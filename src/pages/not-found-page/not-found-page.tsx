@@ -42,8 +42,8 @@ function NotFoundPage(): JSX.Element {
         </div>
       </header>
       <main className="page__main page__main--offer">
-        <section>
-          <p>Page not found.</p>
+        <section className='container'>
+          <p>Страница не найдена</p>
           <Link to={'/'}>Вернуться на главную страницу</Link>
         </section>
       </main>
