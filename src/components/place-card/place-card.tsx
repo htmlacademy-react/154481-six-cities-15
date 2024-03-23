@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { FakeOffers } from '../../utils/mock';
 import BookmarkButton from '../bookmark-button/bookmark-button';
+import { Offers } from '../types/offer';
 
 type PlaceCardProps = {
-  offer: typeof FakeOffers[0];
+  offer: Offers;
 }
 
 function PlaceCard({ offer }: PlaceCardProps): JSX.Element {

@@ -6,22 +6,19 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
+import { FakeOffer } from '../../utils/mock';
 
-type AppProps = {
-  placeCardsCount: number;
-}
-
-function App({ placeCardsCount }: AppProps): JSX.Element {
+function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage placeCardsCount={placeCardsCount} />}
+          element={<MainPage />}
         />
         <Route
           path={AppRoute.Offer}
-          element={<OfferPage />}
+          element={<OfferPage offer={FakeOffer} />}
         />
         <Route
           path={AppRoute.Favorites}

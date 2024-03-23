@@ -1,4 +1,6 @@
-export const FakeOffers = [
+import { Offer, Offers } from '../components/types/offer';
+
+export const FakeOffers: Offers[] = [
   {
     id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
     title: 'Beautiful & luxurious studio at great location',
@@ -116,7 +118,7 @@ export const FakeOffers = [
   }
 ];
 
-export const FakeOffer = {
+export const FakeOffer: Offer = {
   id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
   title: 'Beautiful & luxurious studio at great location',
   type: 'apartment',
@@ -135,20 +137,28 @@ export const FakeOffer = {
     zoom: 8
   },
   isFavorite: false,
-  isPremium: false,
+  isPremium: true,
   rating: 4,
   description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
   bedrooms: 3,
   goods: [
-    'Heating'
+    'Heating',
+    'Wi-Fi',
+    'Washing machine',
+    'Towels'
   ],
   host: {
     name: 'Oliver Conner',
-    avatarUrl: 'https://url-to-image/image.png',
+    avatarUrl: 'img/avatar-angelina.jpg',
     isPro: false
   },
   images: [
-    'https://url-to-image/image.png'
+    'img/room.jpg',
+    'img/apartment-01.jpg',
+    'img/apartment-02.jpg',
+    'img/apartment-03.jpg',
+    'img/studio-01.jpg',
+    'img/apartment-01.jpg'
   ],
   maxAdults: 4
 };
