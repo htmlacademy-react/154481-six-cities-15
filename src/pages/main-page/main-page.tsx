@@ -2,15 +2,9 @@ import Header from '../../components/header/header';
 import LocationsList from '../../components/locations-list/locations-list';
 import PlaceCard from '../../components/place-card/place-card';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
+import { FakeOffers } from '../../utils/mock';
 
-type MainPageProps = {
-  placeCardsCount: number;
-}
-
-function MainPage({ placeCardsCount }: MainPageProps): JSX.Element {
-  const placeCards = new Array(placeCardsCount).fill(<PlaceCard />);
-  // const placeCards = Array.from({ length: placeCardsCount }, () => <PlaceCard />);
-
+function MainPage(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -33,7 +27,14 @@ function MainPage({ placeCardsCount }: MainPageProps): JSX.Element {
               <PlacesSorting />
 
               <div className="cities__places-list places__list tabs__content">
-                { placeCards }
+                {
+                  FakeOffers.map((offer) => (
+                    <PlaceCard
+                      key={offer.id}
+                      offer={offer}
+                    />
+                  ))
+                }
               </div>
 
             </section>
