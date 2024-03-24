@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import Host from '../../components/host/host';
 import OfferInside from '../../components/offer-inside/offer-inside';
 import ReviewsForm from '../../components/reviews-form/reviews-form';
@@ -13,6 +14,9 @@ function OfferPage({ offer }: OfferPageProps): JSX.Element {
 
   return (
     <main className="page__main page__main--offer">
+      <Helmet>
+        <title>6 cities. Offer</title>
+      </Helmet>
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">
