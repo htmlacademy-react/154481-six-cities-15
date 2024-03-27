@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import BookmarkButton from '../bookmark-button/bookmark-button';
-import { Offers } from '../types/offer';
+import { GeneralOffer } from '../types/offers';
 
 type PlaceCardProps = {
-  offer: Offers;
+  offer: GeneralOffer;
 }
 
 function PlaceCard({ offer }: PlaceCardProps): JSX.Element {

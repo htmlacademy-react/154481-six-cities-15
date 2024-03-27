@@ -1,7 +1,7 @@
 import LocationsList from '../../components/locations-list/locations-list';
 import PlaceCard from '../../components/place-card/place-card';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
-import { FakeOffers } from '../../utils/mock';
+import { FakeOffers } from '../../components/mocks/offers';
 
 function MainPage(): JSX.Element {
   return (

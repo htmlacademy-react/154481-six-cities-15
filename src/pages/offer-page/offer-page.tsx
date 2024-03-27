@@ -3,10 +3,10 @@ import Host from '../../components/host/host';
 import OfferInside from '../../components/offer-inside/offer-inside';
 import ReviewsForm from '../../components/reviews-form/reviews-form';
 import ReviewsList from '../../components/reviews-list/reviews-list';
-import { Offer } from '../../components/types/offer';
+import { DetailedOffer } from '../../components/types/offers';
 
 type OfferPageProps = {
-  offer: Offer;
+  offer: DetailedOffer;
 }
 
 function OfferPage({ offer }: OfferPageProps): JSX.Element {
