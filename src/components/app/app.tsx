@@ -10,8 +10,13 @@ import { FakeOffer } from '../mocks/offers';
 import Layout from '../layout/layout';
 import { getAuthorizationStatus } from '../../utils/utils';
 import { HelmetProvider } from 'react-helmet-async';
+import { GeneralOffer } from '../types/offers';
 
-function App(): JSX.Element {
+type AppProps = {
+  offers: GeneralOffer[];
+}
+
+function App({ offers }: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -22,7 +27,7 @@ function App(): JSX.Element {
           >
             <Route
               index
-              element={<MainPage />}
+              element={<MainPage offers={offers} />}
             />
             <Route
               path={AppRoute.Offer}

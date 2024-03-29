@@ -1,9 +1,13 @@
 import LocationsList from '../../components/locations-list/locations-list';
-import PlaceCard from '../../components/place-card/place-card';
+import PlaceCardList from '../../components/place-card-list/place-card-list';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
-import { FakeOffers } from '../../components/mocks/offers';
+import { GeneralOffer } from '../../components/types/offers';
 
-function MainPage(): JSX.Element {
+type MainPageProps = {
+  offers: GeneralOffer[];
+}
+
+function MainPage({ offers }: MainPageProps): JSX.Element {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -21,17 +25,7 @@ function MainPage(): JSX.Element {
             <b className="places__found">312 places to stay in Amsterdam</b>
 
             <PlacesSorting />
-
-            <div className="cities__places-list places__list tabs__content">
-              {
-                FakeOffers.map((offer) => (
-                  <PlaceCard
-                    key={offer.id}
-                    offer={offer}
-                  />
-                ))
-              }
-            </div>
+            <PlaceCardList offers={offers} />
 
           </section>
           <div className="cities__right-section">

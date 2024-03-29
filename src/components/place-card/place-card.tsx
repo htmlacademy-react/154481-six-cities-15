@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import { GeneralOffer } from '../types/offers';
+import { setRating } from '../../utils/utils';
 
 type PlaceCardProps = {
   offer: GeneralOffer;
 }
 
 function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
-  const { isPremium, previewImage, price, isFavorite, title, type } = offer;
+  const { isPremium, previewImage, price, isFavorite, title, type, rating } = offer;
 
   return (
     <article className="cities__card place-card">
@@ -36,7 +37,7 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: '80%' }}></span>
+            <span style={{ width: `${setRating(rating)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

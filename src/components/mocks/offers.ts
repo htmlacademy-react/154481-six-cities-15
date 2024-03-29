@@ -67,7 +67,7 @@ export const FakeOffers: GeneralOffer[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 4,
+    rating: 3,
     previewImage: 'img/apartment-02.jpg'
   },
   {
