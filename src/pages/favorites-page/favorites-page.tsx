@@ -1,16 +1,25 @@
 import { Helmet } from 'react-helmet-async';
+import { GeneralOffer } from '../../components/types/offers';
+import FavoritesList from '../../components/favorites-list/favorites-list';
 
-function FavoritesPage(): JSX.Element {
+type FavoritesPageProps = {
+  offers: GeneralOffer[];
+}
+
+function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
   return (
     <>
       <main className="page__main page__main--favorites">
         <Helmet>
           <title>6 cities. Favorites</title>
         </Helmet>
+
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
+
+            <FavoritesList offers={offers} />
+            {/* <ul className="favorites__list">
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
@@ -174,7 +183,7 @@ function FavoritesPage(): JSX.Element {
                   </article>
                 </div>
               </li>
-            </ul>
+            </ul> */}
           </section>
         </div>
       </main>

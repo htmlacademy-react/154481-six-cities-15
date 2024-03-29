@@ -1,3 +1,4 @@
+import { CardType } from '../../const';
 import PlaceCard from '../place-card/place-card';
 import { GeneralOffer } from '../types/offers';
 
@@ -14,6 +15,7 @@ function PlaceCardList({ offers, handleCardMouseOver }: PlaceCardListProps): JSX
           <PlaceCard
             key={offer.id}
             offer={offer}
+            cardType={CardType.Cities}
             handleCardMouseOver={handleCardMouseOver}
           />
         ))

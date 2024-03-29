@@ -1,5 +1,10 @@
 export const MAX_RATING = 5;
 
+export const CardType = {
+  Cities: 'cities',
+  Favorites: 'favorites'
+};
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
