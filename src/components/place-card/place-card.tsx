@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, generatePath } from 'react-router-dom';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import { GeneralOffer } from '../types/offers';
 import { setRating } from '../../utils/utils';
-import { CardType } from '../../const';
+import { AppRoute, CardType } from '../../const';
 import classNames from 'classnames';
 
 type PlaceCardProps = {
@@ -57,7 +57,7 @@ function PlaceCard({ offer, cardType, handleCardMouseOver }: PlaceCardProps): JS
           })
         }
       >
-        <Link to="#">
+        <Link to={{pathname: generatePath(AppRoute.Offer, {id})}}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -91,7 +91,9 @@ function PlaceCard({ offer, cardType, handleCardMouseOver }: PlaceCardProps): JS
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={{ pathname: generatePath(AppRoute.Offer, { id }) }}>
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
