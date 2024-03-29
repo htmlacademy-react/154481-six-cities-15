@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import LocationsList from '../../components/locations-list/locations-list';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
@@ -8,6 +9,12 @@ type MainPageProps = {
 }
 
 function MainPage({ offers }: MainPageProps): JSX.Element {
+  const [activeCard, setActiveCard] = useState('');
+
+  const handleCardMouseOver = (id: string) => {
+    setActiveCard(id);
+  };
+
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -25,10 +32,16 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
             <b className="places__found">312 places to stay in Amsterdam</b>
 
             <PlacesSorting />
-            <PlaceCardList offers={offers} />
+            <PlaceCardList
+              offers={offers}
+              handleCardMouseOver={handleCardMouseOver}
+            />
 
           </section>
-          <div className="cities__right-section">
+          <div
+            className="cities__right-section"
+            data-active-card={activeCard}
+          >
             <section className="cities__map map"></section>
           </div>
         </div>

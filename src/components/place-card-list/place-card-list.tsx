@@ -3,9 +3,10 @@ import { GeneralOffer } from '../types/offers';
 
 type PlaceCardListProps = {
   offers: GeneralOffer[];
+  handleCardMouseOver: (id: string) => void;
 }
 
-function PlaceCardList({ offers }: PlaceCardListProps): JSX.Element {
+function PlaceCardList({ offers, handleCardMouseOver }: PlaceCardListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {
@@ -13,6 +14,7 @@ function PlaceCardList({ offers }: PlaceCardListProps): JSX.Element {
           <PlaceCard
             key={offer.id}
             offer={offer}
+            handleCardMouseOver={handleCardMouseOver}
           />
         ))
       }

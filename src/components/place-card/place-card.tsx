@@ -5,13 +5,17 @@ import { setRating } from '../../utils/utils';
 
 type PlaceCardProps = {
   offer: GeneralOffer;
+  handleCardMouseOver: (id: string) => void;
 }
 
-function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
-  const { isPremium, previewImage, price, isFavorite, title, type, rating } = offer;
+function PlaceCard({ offer, handleCardMouseOver }: PlaceCardProps): JSX.Element {
+  const { id, isPremium, previewImage, price, isFavorite, title, type, rating } = offer;
 
   return (
-    <article className="cities__card place-card">
+    <article
+      className="cities__card place-card"
+      onMouseOver={() => handleCardMouseOver(id)}
+    >
       {
         isPremium && (
           <div className="place-card__mark">
