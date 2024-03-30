@@ -1,7 +1,7 @@
 import { Link, generatePath } from 'react-router-dom';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import { TGeneralOffer } from '../types/offers';
-import { setRating } from '../../utils/utils';
+import { convertRatingToPercantage } from '../../utils/utils';
 import { AppRoute, CardType } from '../../const';
 import classNames from 'classnames';
 
@@ -90,7 +90,7 @@ function PlaceCard({ offer, cardType, handleCardHover }: TPlaceCardProps): JSX.E
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${setRating(rating)}%` }}></span>
+            <span style={{ width: `${convertRatingToPercantage(rating)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
