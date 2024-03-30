@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { CardType } from '../../const';
 import PlaceCard from '../place-card/place-card';
-import { GeneralOffer } from '../types/offers';
+import { TGeneralOffer } from '../types/offers';
 
-type FavoritesListProps = {
-  offers: GeneralOffer[];
+type TFavoritesListProps = {
+  offers: TGeneralOffer[];
 }
 
-function FavoritesList({ offers }: FavoritesListProps): JSX.Element {
+function FavoritesList({ offers }: TFavoritesListProps): JSX.Element {
   const filteredOffers = offers.filter((offer) => offer.isFavorite);
   const cities = [...new Set(filteredOffers.map(({ city }) => city.name))];
 

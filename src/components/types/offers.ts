@@ -1,4 +1,4 @@
-export type GeneralOffer = {
+export type TGeneralOffer = {
   id: string;
   title: string;
   type: string;
@@ -22,7 +22,7 @@ export type GeneralOffer = {
   previewImage: string;
 }
 
-export type DetailedOffer = {
+export type TDetailedOffer = {
   id: string;
   title: string;
   type: string;

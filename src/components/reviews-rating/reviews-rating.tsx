@@ -1,11 +1,11 @@
 import React, { ChangeEvent } from 'react';
 import { Rating } from '../../const';
 
-type ReviewsRatingProps = {
+type TReviewsRatingProps = {
   handleRatingChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function ReviewsRating({handleRatingChange}: ReviewsRatingProps): JSX.Element {
+function ReviewsRating({handleRatingChange}: TReviewsRatingProps): JSX.Element {
   return (
     <div className="reviews__rating-form form__rating">
       {

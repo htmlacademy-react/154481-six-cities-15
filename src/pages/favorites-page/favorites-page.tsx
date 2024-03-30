@@ -1,14 +1,14 @@
 import { Helmet } from 'react-helmet-async';
-import { GeneralOffer } from '../../components/types/offers';
+import { TGeneralOffer } from '../../components/types/offers';
 import FavoritesList from '../../components/favorites-list/favorites-list';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
-type FavoritesPageProps = {
-  offers: GeneralOffer[];
+type TFavoritesPageProps = {
+  offers: TGeneralOffer[];
 }
 
-function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
+function FavoritesPage({ offers }: TFavoritesPageProps): JSX.Element {
   return (
     <>
       <main className="page__main page__main--favorites">

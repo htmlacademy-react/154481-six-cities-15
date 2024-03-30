@@ -10,13 +10,13 @@ import { FakeOffer } from '../mocks/offers';
 import Layout from '../layout/layout';
 import { getAuthorizationStatus } from '../../utils/utils';
 import { HelmetProvider } from 'react-helmet-async';
-import { GeneralOffer } from '../types/offers';
+import { TGeneralOffer } from '../types/offers';
 
-type AppProps = {
-  offers: GeneralOffer[];
+type TAppProps = {
+  offers: TGeneralOffer[];
 }
 
-function App({ offers }: AppProps): JSX.Element {
+function App({ offers }: TAppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>

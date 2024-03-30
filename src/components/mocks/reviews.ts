@@ -1,6 +1,6 @@
-import { Review } from '../types/reviews';
+import { TReview } from '../types/reviews';
 
-export const FakeReviews: Review[] = [
+export const FakeReviews: TReview[] = [
   {
     id: 'b67ddfd5-b953-4a30-8c8d-bd083cd6b62a',
     date: '2019-05-08T14:13:56.569Z',

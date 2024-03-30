@@ -1,6 +1,6 @@
-import { DetailedOffer, GeneralOffer } from '../types/offers';
+import { TDetailedOffer, TGeneralOffer } from '../types/offers';
 
-export const FakeOffers: GeneralOffer[] = [
+export const FakeOffers: TGeneralOffer[] = [
   {
     id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
     title: 'Beautiful & luxurious studio at great location',
@@ -118,7 +118,7 @@ export const FakeOffers: GeneralOffer[] = [
   }
 ];
 
-export const FakeOffer: DetailedOffer = {
+export const FakeOffer: TDetailedOffer = {
   id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
   title: 'Beautiful & luxurious studio at great location',
   type: 'apartment',

@@ -1,8 +1,8 @@
-type OfferInsideProps = {
+type TOfferInsideProps = {
   goods: string[];
 }
 
-function OfferInside({ goods }: OfferInsideProps): JSX.Element {
+function OfferInside({ goods }: TOfferInsideProps): JSX.Element {
   return (
     <div className="offer__inside">
       <h2 className="offer__inside-title">What&apos;s inside</h2>

@@ -1,13 +1,13 @@
 import { CardType } from '../../const';
 import PlaceCard from '../place-card/place-card';
-import { GeneralOffer } from '../types/offers';
+import { TGeneralOffer } from '../types/offers';
 
-type PlaceCardListProps = {
-  offers: GeneralOffer[];
+type TPlaceCardListProps = {
+  offers: TGeneralOffer[];
   handleCardHover: (id?: string) => void;
 }
 
-function PlaceCardList({ offers, handleCardHover }: PlaceCardListProps): JSX.Element {
+function PlaceCardList({ offers, handleCardHover }: TPlaceCardListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {

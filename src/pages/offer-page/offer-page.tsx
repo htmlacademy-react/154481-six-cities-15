@@ -3,14 +3,14 @@ import Host from '../../components/host/host';
 import OfferInside from '../../components/offer-inside/offer-inside';
 import ReviewsForm from '../../components/reviews-form/reviews-form';
 import ReviewsList from '../../components/reviews-list/reviews-list';
-import { DetailedOffer } from '../../components/types/offers';
+import { TDetailedOffer } from '../../components/types/offers';
 import { Link } from 'react-router-dom';
 
-type OfferPageProps = {
-  offer: DetailedOffer;
+type TOfferPageProps = {
+  offer: TDetailedOffer;
 }
 
-function OfferPage({ offer }: OfferPageProps): JSX.Element {
+function OfferPage({ offer }: TOfferPageProps): JSX.Element {
   const { images, isPremium, title, type, bedrooms, maxAdults, price, goods, host } = offer;
 
   return (

@@ -2,14 +2,14 @@ import { useState } from 'react';
 import LocationsList from '../../components/locations-list/locations-list';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
-import { GeneralOffer } from '../../components/types/offers';
+import { TGeneralOffer } from '../../components/types/offers';
 import { Nullable } from 'vitest';
 
-type MainPageProps = {
-  offers: GeneralOffer[];
+type TMainPageProps = {
+  offers: TGeneralOffer[];
 }
 
-function MainPage({ offers }: MainPageProps): JSX.Element {
+function MainPage({ offers }: TMainPageProps): JSX.Element {
   const [activeCard, setActiveCard] = useState <Nullable<string>>(null);
 
   const handleCardHover = (id?: string) => {

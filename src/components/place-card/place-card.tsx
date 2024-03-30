@@ -1,12 +1,12 @@
 import { Link, generatePath } from 'react-router-dom';
 import BookmarkButton from '../bookmark-button/bookmark-button';
-import { GeneralOffer } from '../types/offers';
+import { TGeneralOffer } from '../types/offers';
 import { setRating } from '../../utils/utils';
 import { AppRoute, CardType } from '../../const';
 import classNames from 'classnames';
 
-type PlaceCardProps = {
-  offer: GeneralOffer;
+type TPlaceCardProps = {
+  offer: TGeneralOffer;
   cardType: string;
   handleCardHover?: (id?: string) => void;
 }
@@ -26,7 +26,7 @@ const CardSettings = {
   }
 };
 
-function PlaceCard({ offer, cardType, handleCardHover }: PlaceCardProps): JSX.Element {
+function PlaceCard({ offer, cardType, handleCardHover }: TPlaceCardProps): JSX.Element {
   const { id, isPremium, previewImage, price, isFavorite, title, type, rating } = offer;
 
   const handleCardMouseEnter = () => handleCardHover && handleCardHover(id);
