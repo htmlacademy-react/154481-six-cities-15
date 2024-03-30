@@ -8,7 +8,7 @@ import classNames from 'classnames';
 type PlaceCardProps = {
   offer: GeneralOffer;
   cardType: string;
-  handleCardMouseOver?: (id: string) => void;
+  handleCardHover?: (id?: string) => void;
 }
 
 const CardSettings = {
@@ -26,8 +26,11 @@ const CardSettings = {
   }
 };
 
-function PlaceCard({ offer, cardType, handleCardMouseOver }: PlaceCardProps): JSX.Element {
+function PlaceCard({ offer, cardType, handleCardHover }: PlaceCardProps): JSX.Element {
   const { id, isPremium, previewImage, price, isFavorite, title, type, rating } = offer;
+
+  const handleCardMouseEnter = () => handleCardHover && handleCardHover(id);
+  const handleCardMouseLeave = () => handleCardHover && handleCardHover();
 
   return (
     <article
@@ -38,7 +41,8 @@ function PlaceCard({ offer, cardType, handleCardMouseOver }: PlaceCardProps): JS
           'favorites__card': cardType === CardType.Favorites
         })
       }
-      onMouseOver={() => handleCardMouseOver && handleCardMouseOver(id)}
+      onMouseEnter={handleCardMouseEnter}
+      onMouseLeave={handleCardMouseLeave}
     >
       {
         isPremium && (

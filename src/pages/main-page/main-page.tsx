@@ -3,16 +3,17 @@ import LocationsList from '../../components/locations-list/locations-list';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
 import { GeneralOffer } from '../../components/types/offers';
+import { Nullable } from 'vitest';
 
 type MainPageProps = {
   offers: GeneralOffer[];
 }
 
 function MainPage({ offers }: MainPageProps): JSX.Element {
-  const [activeCard, setActiveCard] = useState('');
+  const [activeCard, setActiveCard] = useState <Nullable<string>>(null);
 
-  const handleCardMouseOver = (id: string) => {
-    setActiveCard(id);
+  const handleCardHover = (id?: string) => {
+    setActiveCard(id || null);
   };
 
   return (
@@ -34,7 +35,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
             <PlacesSorting />
             <PlaceCardList
               offers={offers}
-              handleCardMouseOver={handleCardMouseOver}
+              handleCardHover={handleCardHover}
             />
 
           </section>
