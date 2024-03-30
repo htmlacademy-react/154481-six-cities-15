@@ -1,4 +1,4 @@
-import { FakeReviews } from '../../utils/mock';
+import { FakeReviews } from '../mocks/reviews';
 
 function ReviewsList(): JSX.Element {
   return (

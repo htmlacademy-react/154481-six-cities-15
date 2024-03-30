@@ -1,6 +1,6 @@
-import { Offer, Offers } from '../components/types/offer';
+import { TDetailedOffer, TGeneralOffer } from '../types/offers';
 
-export const FakeOffers: Offers[] = [
+export const FakeOffers: TGeneralOffer[] = [
   {
     id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
     title: 'Beautiful & luxurious studio at great location',
@@ -65,9 +65,9 @@ export const FakeOffers: Offers[] = [
       longitude: 4.673877537499948,
       zoom: 8
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
-    rating: 4,
+    rating: 3,
     previewImage: 'img/apartment-02.jpg'
   },
   {
@@ -118,7 +118,7 @@ export const FakeOffers: Offers[] = [
   }
 ];
 
-export const FakeOffer: Offer = {
+export const FakeOffer: TDetailedOffer = {
   id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
   title: 'Beautiful & luxurious studio at great location',
   type: 'apartment',
@@ -138,7 +138,7 @@ export const FakeOffer: Offer = {
   },
   isFavorite: false,
   isPremium: true,
-  rating: 4,
+  rating: 4.8,
   description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
   bedrooms: 3,
   goods: [
@@ -163,16 +163,4 @@ export const FakeOffer: Offer = {
   maxAdults: 4
 };
 
-export const FakeReviews = [
-  {
-    id: 'b67ddfd5-b953-4a30-8c8d-bd083cd6b62a',
-    date: '2019-05-08T14:13:56.569Z',
-    user: {
-      name: 'Oliver Conner',
-      avatarUrl: 'https://url-to-image/image.png',
-      isPro: false
-    },
-    comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    rating: 4
-  }
-];
+

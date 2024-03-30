@@ -1,4 +1,4 @@
-type HostProps = {
+type THostProps = {
   host: {
     name: string;
     avatarUrl: string;
@@ -6,7 +6,7 @@ type HostProps = {
   };
 };
 
-function Host({ host }: HostProps): JSX.Element {
+function Host({ host }: THostProps): JSX.Element {
   const { name, avatarUrl, isPro } = host;
 
   return (

@@ -1,50 +1,53 @@
-import Header from '../../components/header/header';
+import { useState } from 'react';
 import LocationsList from '../../components/locations-list/locations-list';
-import PlaceCard from '../../components/place-card/place-card';
+import PlaceCardList from '../../components/place-card-list/place-card-list';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
-import { FakeOffers } from '../../utils/mock';
+import { TGeneralOffer } from '../../components/types/offers';
+import { Nullable } from 'vitest';
 
-function MainPage(): JSX.Element {
+type TMainPageProps = {
+  offers: TGeneralOffer[];
+}
+
+function MainPage({ offers }: TMainPageProps): JSX.Element {
+  const [activeCard, setActiveCard] = useState <Nullable<string>>(null);
+
+  const handleCardHover = (id?: string) => {
+    setActiveCard(id || null);
+  };
+
   return (
-    <div className="page page--gray page--main">
-      <Header />
+    <main className="page__main page__main--index">
+      <h1 className="visually-hidden">Cities</h1>
 
-      <main className="page__main page__main--index">
-        <h1 className="visually-hidden">Cities</h1>
+      <div className="tabs">
+        <section className="locations container">
+          <LocationsList />
+        </section>
+      </div>
 
-        <div className="tabs">
-          <section className="locations container">
-            <LocationsList />
+      <div className="cities">
+        <div className="cities__places-container container">
+          <section className="cities__places places">
+            <h2 className="visually-hidden">Places</h2>
+            <b className="places__found">312 places to stay in Amsterdam</b>
+
+            <PlacesSorting />
+            <PlaceCardList
+              offers={offers}
+              handleCardHover={handleCardHover}
+            />
+
           </section>
-        </div>
-
-        <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
-
-              <PlacesSorting />
-
-              <div className="cities__places-list places__list tabs__content">
-                {
-                  FakeOffers.map((offer) => (
-                    <PlaceCard
-                      key={offer.id}
-                      offer={offer}
-                    />
-                  ))
-                }
-              </div>
-
-            </section>
-            <div className="cities__right-section">
-              <section className="cities__map map"></section>
-            </div>
+          <div
+            className="cities__right-section"
+            data-active-card={activeCard}
+          >
+            <section className="cities__map map"></section>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
 
