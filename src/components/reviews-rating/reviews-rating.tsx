@@ -1,16 +1,17 @@
-import React, { ChangeEvent } from 'react';
+import { Fragment } from 'react';
 import { Rating } from '../../const';
+import { TChangeHandler } from '../reviews-form/reviews-form';
 
 type TReviewsRatingProps = {
-  handleRatingChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleChange: TChangeHandler;
 }
 
-function ReviewsRating({handleRatingChange}: TReviewsRatingProps): JSX.Element {
+function ReviewsRating({handleChange}: TReviewsRatingProps): JSX.Element {
   return (
     <div className="reviews__rating-form form__rating">
       {
         Rating.map(({value, title}) => (
-          <React.Fragment
+          <Fragment
             key={title}
           >
             <input
@@ -19,7 +20,7 @@ function ReviewsRating({handleRatingChange}: TReviewsRatingProps): JSX.Element {
               value={value}
               id={`${value}-stars`}
               type="radio"
-              onChange={handleRatingChange}
+              onChange={handleChange}
             />
             <label
               htmlFor={`${value}-stars`}
@@ -30,7 +31,7 @@ function ReviewsRating({handleRatingChange}: TReviewsRatingProps): JSX.Element {
                 <use xlinkHref="#icon-star" />
               </svg>
             </label>
-          </React.Fragment>
+          </Fragment>
         ))
       }
     </div>

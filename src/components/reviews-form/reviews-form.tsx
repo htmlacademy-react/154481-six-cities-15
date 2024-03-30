@@ -1,5 +1,7 @@
-import { ChangeEvent, useState } from 'react';
+import { ReactEventHandler, useState } from 'react';
 import ReviewsRating from '../reviews-rating/reviews-rating';
+
+export type TChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
 function ReviewsForm(): JSX.Element {
   const [form, setForm] = useState({
@@ -7,17 +9,12 @@ function ReviewsForm(): JSX.Element {
     review: '',
   });
 
-  const handleRatingChange = ({target}: ChangeEvent<HTMLInputElement>) => {
-    setForm({
-      ...form,
-      [target.name]: target.value
-    });
-  };
+  const handleChange: TChangeHandler = (e) => {
+    const { name, value } = e.currentTarget;
 
-  const handleReviewChange = ({target}: ChangeEvent<HTMLTextAreaElement>) => {
     setForm({
       ...form,
-      [target.name]: target.value
+      [name]: value
     });
   };
 
@@ -28,7 +25,7 @@ function ReviewsForm(): JSX.Element {
       </label>
 
       <ReviewsRating
-        handleRatingChange={handleRatingChange}
+        handleChange={handleChange}
       />
       <textarea
         className="reviews__textarea form__textarea"
@@ -36,7 +33,7 @@ function ReviewsForm(): JSX.Element {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={form.review}
-        onChange={handleReviewChange}
+        onChange={handleChange}
       />
 
       <div className="reviews__button-wrapper">
