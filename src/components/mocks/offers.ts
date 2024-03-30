@@ -138,7 +138,7 @@ export const FakeOffer: TDetailedOffer = {
   },
   isFavorite: false,
   isPremium: true,
-  rating: 4,
+  rating: 4.8,
   description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
   bedrooms: 3,
   goods: [

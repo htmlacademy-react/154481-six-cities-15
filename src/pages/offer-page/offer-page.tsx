@@ -5,7 +5,7 @@ import ReviewsForm from '../../components/reviews-form/reviews-form';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import { TDetailedOffer } from '../../components/types/offers';
 import { Link } from 'react-router-dom';
-import { getAuthorizationStatus } from '../../utils/utils';
+import { getAuthorizationStatus, setRating } from '../../utils/utils';
 import { AuthorizationStatus } from '../../const';
 
 type TOfferPageProps = {
@@ -13,7 +13,7 @@ type TOfferPageProps = {
 }
 
 function OfferPage({ offer }: TOfferPageProps): JSX.Element {
-  const { images, isPremium, title, type, bedrooms, maxAdults, price, goods, host } = offer;
+  const { images, isPremium, title, type, bedrooms, maxAdults, price, goods, host, rating } = offer;
 
   return (
     <main className="page__main page__main--offer">
@@ -59,10 +59,10 @@ function OfferPage({ offer }: TOfferPageProps): JSX.Element {
             </div>
             <div className="offer__rating rating">
               <div className="offer__stars rating__stars">
-                <span style={{ width: '80%' }} />
+                <span style={{ width: `${setRating(rating)}%` }} />
                 <span className="visually-hidden">Rating</span>
               </div>
-              <span className="offer__rating-value rating__value">4.8</span>
+              <span className="offer__rating-value rating__value">{rating}</span>
             </div>
             <ul className="offer__features">
               <li className="offer__feature offer__feature--entire">{type}</li>
