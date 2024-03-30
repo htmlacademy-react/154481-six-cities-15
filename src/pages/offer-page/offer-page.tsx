@@ -5,6 +5,8 @@ import ReviewsForm from '../../components/reviews-form/reviews-form';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import { TDetailedOffer } from '../../components/types/offers';
 import { Link } from 'react-router-dom';
+import { getAuthorizationStatus } from '../../utils/utils';
+import { AuthorizationStatus } from '../../const';
 
 type TOfferPageProps = {
   offer: TDetailedOffer;
@@ -83,9 +85,15 @@ function OfferPage({ offer }: TOfferPageProps): JSX.Element {
               <h2 className="reviews__title">
                   Reviews · <span className="reviews__amount">1</span>
               </h2>
+
               <ReviewsList />
-              <ReviewsForm />
+
+              {
+                getAuthorizationStatus() === AuthorizationStatus.Auth && <ReviewsForm />
+              }
+
             </section>
+
           </div>
         </div>
         <section className="offer__map map" />
