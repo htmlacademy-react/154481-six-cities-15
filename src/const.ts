@@ -56,12 +56,12 @@ export enum AuthorizationStatus {
 }
 
 export enum Cities {
-  Paris = 'PARIS',
-  Cologne = 'COLOGNE',
-  Brussels = 'BRUSSELS',
-  Amsterdam = 'AMSTERDAM',
-  Hamburg = 'HAMBURG',
-  Dusseldorf = 'DUSSELDORF',
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf',
 }
 
 export enum PlacesSort {
