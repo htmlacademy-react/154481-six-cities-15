@@ -28,6 +28,19 @@ export const Rating = [
   },
 ];
 
+export const MapIcon = {
+  Default: {
+    Url: './img/pin.svg',
+    Size: [27, 39],
+    Anchor: [13, 39]
+  },
+  Active: {
+    Url: './img/pin-active.svg',
+    Size: [27, 39],
+    Anchor: [13, 39]
+  }
+};
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',

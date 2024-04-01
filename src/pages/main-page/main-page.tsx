@@ -3,17 +3,17 @@ import LocationsList from '../../components/locations-list/locations-list';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
 import { TGeneralOffer } from '../../components/types/offers';
-import { Nullable } from 'vitest';
+import Map from '../../components/map/map';
 
 type TMainPageProps = {
   offers: TGeneralOffer[];
 }
 
 function MainPage({ offers }: TMainPageProps): JSX.Element {
-  const [activeCard, setActiveCard] = useState <Nullable<string>>(null);
+  const [activeCardId, setActiveCardId] = useState <string | null>(null);
 
   const handleCardHover = (id?: string) => {
-    setActiveCard(id || null);
+    setActiveCardId(id || null);
   };
 
   return (
@@ -39,11 +39,10 @@ function MainPage({ offers }: TMainPageProps): JSX.Element {
             />
 
           </section>
-          <div
-            className="cities__right-section"
-            data-active-card={activeCard}
-          >
-            <section className="cities__map map"></section>
+
+          <div className="cities__right-section">
+            <Map offers={offers} activeCardId={activeCardId} />
+            {/* <section className="cities__map map"></section> */}
           </div>
         </div>
       </div>
