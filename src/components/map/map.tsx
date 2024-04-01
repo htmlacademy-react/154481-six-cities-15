@@ -5,28 +5,29 @@ import useMap from '../hooks/useMap';
 import { MapIcon } from '../../const';
 import { TCity, TGeneralOffer } from '../types/offers';
 
+const defaultMarker = L.icon({
+  iconUrl: MapIcon.Default.Url,
+  iconSize: [MapIcon.Default.Size[0], MapIcon.Default.Size[1]],
+  iconAnchor: [MapIcon.Default.Anchor[0], MapIcon.Default.Anchor[1]]
+});
+
+const activeMarker = L.icon({
+  iconUrl: MapIcon.Active.Url,
+  iconSize: [MapIcon.Active.Size[0], MapIcon.Active.Size[1]],
+  iconAnchor: [MapIcon.Active.Anchor[0], MapIcon.Active.Anchor[1]]
+});
+
 type TMapProps = {
   offers: TGeneralOffer[];
   activeCardId: string | null;
+  className: string;
 }
 
-function Map({ offers, activeCardId }: TMapProps): JSX.Element {
+function Map({ offers, activeCardId, className }: TMapProps): JSX.Element {
   const activeCity: TCity = offers[0].city;
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, activeCity);
-
-  const defaultMarker = L.icon({
-    iconUrl: MapIcon.Default.Url,
-    iconSize: [MapIcon.Default.Size[0], MapIcon.Default.Size[1]],
-    iconAnchor: [MapIcon.Default.Anchor[0], MapIcon.Default.Anchor[1]]
-  });
-
-  const activeMarker = L.icon({
-    iconUrl: MapIcon.Active.Url,
-    iconSize: [MapIcon.Active.Size[0], MapIcon.Active.Size[1]],
-    iconAnchor: [MapIcon.Active.Anchor[0], MapIcon.Active.Anchor[1]]
-  });
 
   useEffect(() => {
     if (map) {
@@ -42,10 +43,14 @@ function Map({ offers, activeCardId }: TMapProps): JSX.Element {
         ).addTo(map);
       });
     }
-  }, [activeCardId, activeMarker, defaultMarker, map, offers]);
+  }, [activeCardId, map, offers]);
 
   return (
-    <section className="cities__map map" ref={mapRef}></section>
+    <section
+      className={`${className} map`}
+      ref={mapRef}
+    >
+    </section>
   );
 }
 
