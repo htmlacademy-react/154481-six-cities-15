@@ -3,7 +3,6 @@ import BookmarkButton from '../bookmark-button/bookmark-button';
 import { TGeneralOffer } from '../types/offers';
 import { convertRatingToPercantage } from '../../utils/utils';
 import { AppRoute, CardType } from '../../const';
-import classNames from 'classnames';
 
 type TPlaceCardProps = {
   offer: TGeneralOffer;
@@ -13,17 +12,32 @@ type TPlaceCardProps = {
 
 const CardSettings = {
   [CardType.Cities]: {
+    CardClass: 'cities__card',
+    ImageWrapperClass: 'cities__image-wrapper',
+    CardInfoClass: '',
     ImageSize: {
       Width: 260,
       Height: 200
     }
   },
   [CardType.Favorites]: {
+    CardClass: 'favorites__card',
+    ImageWrapperClass: 'favorites__image-wrapper',
+    CardInfoClass: 'favorites__card-info',
     ImageSize: {
       Width: 150,
       Height: 110
     }
-  }
+  },
+  [CardType.PlacesNearby]: {
+    CardClass: 'near-places__card',
+    ImageWrapperClass: 'near-places__image-wrapper',
+    CardInfoClass: '',
+    ImageSize: {
+      Width: 260,
+      Height: 200
+    }
+  },
 };
 
 function PlaceCard({ offer, cardType, handleCardHover }: TPlaceCardProps): JSX.Element {
@@ -34,13 +48,7 @@ function PlaceCard({ offer, cardType, handleCardHover }: TPlaceCardProps): JSX.E
 
   return (
     <article
-      className={
-        classNames({
-          'place-card': true,
-          'cities__card': cardType === CardType.Cities,
-          'favorites__card': cardType === CardType.Favorites
-        })
-      }
+      className={`${CardSettings[cardType].CardClass} place-card`}
       onMouseEnter={handleCardMouseEnter}
       onMouseLeave={handleCardMouseLeave}
     >
@@ -52,15 +60,7 @@ function PlaceCard({ offer, cardType, handleCardHover }: TPlaceCardProps): JSX.E
         )
       }
 
-      <div
-        className={
-          classNames({
-            'place-card__image-wrapper': true,
-            'cities__image-wrapper': cardType === CardType.Cities,
-            'favorites__image-wrapper': cardType === CardType.Favorites
-          })
-        }
-      >
+      <div className={`${CardSettings[cardType].ImageWrapperClass} place-card`}>
         <Link to={{pathname: generatePath(AppRoute.Offer, {id})}}>
           <img
             className="place-card__image"
@@ -71,14 +71,7 @@ function PlaceCard({ offer, cardType, handleCardHover }: TPlaceCardProps): JSX.E
           />
         </Link>
       </div>
-      <div
-        className={
-          classNames({
-            'place-card__info': true,
-            'favorites__card-info': cardType === CardType.Favorites
-          })
-        }
-      >
+      <div className={`${CardSettings[cardType].CardInfoClass} place-card`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>

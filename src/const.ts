@@ -2,7 +2,8 @@ export const MAX_RATING = 5;
 
 export const CardType = {
   Cities: 'cities',
-  Favorites: 'favorites'
+  Favorites: 'favorites',
+  PlacesNearby: 'places nearby'
 };
 
 export const Rating = [
