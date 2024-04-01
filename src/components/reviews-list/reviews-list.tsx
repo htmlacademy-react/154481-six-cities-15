@@ -1,11 +1,17 @@
-import { FakeReviews } from '../mocks/reviews';
+import dayjs from 'dayjs';
+import { convertRatingToPercantage } from '../../utils/utils';
+import { TReview } from '../types/reviews';
 
-function ReviewsList(): JSX.Element {
+type TReviewsListProps = {
+  reviews: TReview[];
+}
+
+function ReviewsList({reviews}: TReviewsListProps): JSX.Element {
   return (
     <ul className="reviews__list">
       {
-        FakeReviews.map((review) => {
-          const { id, user, comment } = review;
+        reviews.map((review) => {
+          const { id, user, comment, rating, date } = review;
 
           return (
             <li
@@ -16,26 +22,28 @@ function ReviewsList(): JSX.Element {
                 <div className="reviews__avatar-wrapper user__avatar-wrapper">
                   <img
                     className="reviews__avatar user__avatar"
-                    src="img/avatar-max.jpg"
+                    src={user.avatarUrl}
                     width={54}
                     height={54}
                     alt="Reviews avatar"
                   />
                 </div>
-                <span className="reviews__user-name">{user.name}</span>
+                <span className="reviews__user-name">
+                  {user.name}
+                </span>
               </div>
               <div className="reviews__info">
                 <div className="reviews__rating rating">
                   <div className="reviews__stars rating__stars">
-                    <span style={{ width: '80%' }} />
+                    <span style={{ width: `${convertRatingToPercantage(rating)}%` }} />
                     <span className="visually-hidden">Rating</span>
                   </div>
                 </div>
                 <p className="reviews__text">
                   {comment}
                 </p>
-                <time className="reviews__time" dateTime="2019-04-24">
-                    April 2019
+                <time className="reviews__time" dateTime={date}>
+                  {dayjs(date).format('MMMM YYYY')}
                 </time>
               </div>
             </li>

@@ -1,25 +1,24 @@
 import { Helmet } from 'react-helmet-async';
 import Host from '../../components/host/host';
 import OfferInside from '../../components/offer-inside/offer-inside';
-import ReviewsForm from '../../components/reviews-form/reviews-form';
-import ReviewsList from '../../components/reviews-list/reviews-list';
 import { TDetailedOffer } from '../../components/types/offers';
 import { Link } from 'react-router-dom';
-import { getAuthorizationStatus, convertRatingToPercantage } from '../../utils/utils';
-import { AuthorizationStatus } from '../../const';
+import { convertRatingToPercantage } from '../../utils/utils';
+import Reviews from '../../components/reviews/reviews';
 
 type TOfferPageProps = {
   offer: TDetailedOffer;
 }
 
 function OfferPage({ offer }: TOfferPageProps): JSX.Element {
-  const { images, isPremium, title, type, bedrooms, maxAdults, price, goods, host, rating } = offer;
+  const { images, isPremium, title, type, bedrooms, maxAdults, price, goods, host, rating, id } = offer;
 
   return (
     <main className="page__main page__main--offer">
       <Helmet>
         <title>6 cities. Offer</title>
       </Helmet>
+
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">
@@ -81,18 +80,7 @@ function OfferPage({ offer }: TOfferPageProps): JSX.Element {
             <OfferInside goods={goods} />
             <Host host={host} />
 
-            <section className="offer__reviews reviews">
-              <h2 className="reviews__title">
-                  Reviews · <span className="reviews__amount">1</span>
-              </h2>
-
-              <ReviewsList />
-
-              {
-                getAuthorizationStatus() === AuthorizationStatus.Auth && <ReviewsForm />
-              }
-
-            </section>
+            <Reviews id={id} />
 
           </div>
         </div>
