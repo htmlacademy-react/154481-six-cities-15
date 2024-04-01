@@ -70,3 +70,8 @@ export enum PlacesSort {
   PriceHighToLow = 'Price: high to low',
   TopRatedFirst = 'Top rated first',
 }
+
+export enum NameSpace {
+  Interface = 'Interface',
+  Data = 'Data'
+}

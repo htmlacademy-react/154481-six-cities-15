@@ -3,9 +3,10 @@ import FavoritesList from '../../components/favorites-list/favorites-list';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../components/hooks';
+import { getOffers } from '../../components/store/data-reducer/selectors';
 
 function FavoritesPage(): JSX.Element {
-  const offers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector(getOffers);
 
   return (
     <>

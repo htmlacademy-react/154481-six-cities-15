@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
-import { Cities } from '../../const';
+import { AppRoute, Cities } from '../../const';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { changeCity } from '../store/action';
+import { getActiveCity } from '../store/interface-reducer/selectors';
+import { setCity } from '../store/interface-reducer/interface-reducer';
 
 function LocationsList(): JSX.Element {
-  const activeCity = useAppSelector((state) => state.activeCity);
+  const activeCity = useAppSelector(getActiveCity);
   const dispatch = useAppDispatch();
 
   return (
@@ -21,9 +22,9 @@ function LocationsList(): JSX.Element {
             <li
               key={city}
               className="locations__item"
-              onClick={() => dispatch(changeCity(city))}
+              onClick={() => dispatch(setCity(city))}
             >
-              <Link className={linkClass} to="#">
+              <Link className={linkClass} to={AppRoute.Main}>
                 <span>{city}</span>
               </Link>
             </li>

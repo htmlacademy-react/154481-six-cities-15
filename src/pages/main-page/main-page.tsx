@@ -4,12 +4,14 @@ import PlaceCardList from '../../components/place-card-list/place-card-list';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
 import Map from '../../components/map/map';
 import { useAppSelector } from '../../components/hooks';
+import { getActiveCity } from '../../components/store/interface-reducer/selectors';
+import { getOffers } from '../../components/store/data-reducer/selectors';
 
 function MainPage(): JSX.Element {
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
 
-  const activeCity = useAppSelector((state) => state.activeCity);
-  const offers = useAppSelector((state) => state.offers);
+  const activeCity = useAppSelector(getActiveCity);
+  const offers = useAppSelector(getOffers);
   const offersByCity = offers.filter((offer) => offer.city.name === activeCity);
 
   const handleCardHover = (id?: string) => {
