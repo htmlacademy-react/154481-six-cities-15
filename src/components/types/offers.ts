@@ -3,14 +3,7 @@ export type TGeneralOffer = {
   title: string;
   type: string;
   price: number;
-  city: {
-    name: string;
-    location: {
-      latitude: number;
-      longitude: number;
-      zoom: number;
-    };
-  };
+  city: TCity;
   location: {
     latitude: number;
     longitude: number;
@@ -27,14 +20,7 @@ export type TDetailedOffer = {
   title: string;
   type: string;
   price: number;
-  city: {
-    name: string;
-    location: {
-      latitude: number;
-      longitude: number;
-      zoom: number;
-    };
-  };
+  city: TCity;
   location: {
     latitude: number;
     longitude: number;
@@ -53,4 +39,13 @@ export type TDetailedOffer = {
   };
   images: string[];
   maxAdults: number;
+}
+
+export type TCity = {
+  name: string;
+  location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+  };
 }
