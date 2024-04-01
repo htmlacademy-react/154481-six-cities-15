@@ -1,4 +1,4 @@
-import L from 'leaflet';
+import L, { LayerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
 import useMap from '../hooks/useMap';
@@ -28,6 +28,21 @@ function Map({ offers, activeCardId, className }: TMapProps): JSX.Element {
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, activeCity);
+  const markerLayerRef = useRef<LayerGroup>(L.layerGroup());
+
+  useEffect(() => {
+    if (map) {
+      map.setView(
+        [
+          activeCity.location.latitude,
+          activeCity.location.longitude
+        ],
+        activeCity.location.zoom
+      );
+      markerLayerRef.current.addTo(map);
+      markerLayerRef.current.clearLayers();
+    }
+  }, [activeCity, map]);
 
   useEffect(() => {
     if (map) {
@@ -40,7 +55,7 @@ function Map({ offers, activeCardId, className }: TMapProps): JSX.Element {
           {
             icon: activeCardId && id === activeCardId ? activeMarker : defaultMarker
           }
-        ).addTo(map);
+        ).addTo(markerLayerRef.current);
       });
     }
   }, [activeCardId, map, offers]);
