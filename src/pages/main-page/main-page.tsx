@@ -41,8 +41,11 @@ function MainPage({ offers }: TMainPageProps): JSX.Element {
           </section>
 
           <div className="cities__right-section">
-            <Map offers={offers} activeCardId={activeCardId} />
-            {/* <section className="cities__map map"></section> */}
+            <Map
+              offers={offers}
+              activeCardId={activeCardId}
+              className='cities__map'
+            />
           </div>
         </div>
       </div>
