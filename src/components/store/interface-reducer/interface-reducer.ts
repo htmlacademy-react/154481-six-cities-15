@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Cities, NameSpace } from '../../../const';
 import { TInterfaceReducer } from '../../types/state';
-import { TCityName } from '../../types/cities';
+import { TCityName } from '../../types/types';
 
 const initialState: TInterfaceReducer = {
   activeCity: Cities.Paris,

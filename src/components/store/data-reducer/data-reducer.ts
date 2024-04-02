@@ -13,7 +13,7 @@ const dataSlice = createSlice({
   reducers: {
     loadOffers(state, action: PayloadAction<TGeneralOffer[]>) {
       state.offers = action.payload;
-    }
+    },
   }
 });
 

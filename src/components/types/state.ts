@@ -1,5 +1,5 @@
 import { store } from '../store';
-import { TCityName } from './cities';
+import { TCityName } from './types';
 import { TGeneralOffer } from './offers';
 
 export type TInterfaceReducer = {
