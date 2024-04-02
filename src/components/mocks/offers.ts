@@ -115,6 +115,52 @@ export const FakeOffers: TGeneralOffer[] = [
     isPremium: false,
     rating: 4,
     previewImage: 'img/room.jpg'
+  },
+  {
+    id: '6af6f711-c28d-4121-82cd-e0b462a27f05',
+    title: 'Wood and stone place',
+    type: 'Room',
+    price: 80,
+    city: {
+      name: 'Paris',
+      location: {
+        latitude:  48.864716,
+        longitude: 2.349014,
+        zoom: 8
+      }
+    },
+    location: {
+      latitude:  48.864716,
+      longitude: 2.349014,
+      zoom: 8
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 4,
+    previewImage: 'img/room.jpg'
+  },
+  {
+    id: '6af6f711-c28d-4121-82cd-e0b462a27f05',
+    title: 'Wood and stone place',
+    type: 'Room',
+    price: 80,
+    city: {
+      name: 'Cologne',
+      location: {
+        latitude:  50.935173,
+        longitude: 6.953101,
+        zoom: 8
+      }
+    },
+    location: {
+      latitude:  50.935173,
+      longitude: 6.953101,
+      zoom: 8
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 4,
+    previewImage: 'img/room.jpg'
   }
 ];
 

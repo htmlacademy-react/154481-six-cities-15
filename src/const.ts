@@ -55,18 +55,23 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum Cities {
-  Paris = 'PARIS',
-  Cologne = 'COLOGNE',
-  Brussels = 'BRUSSELS',
-  Amsterdam = 'AMSTERDAM',
-  Hamburg = 'HAMBURG',
-  Dusseldorf = 'DUSSELDORF',
-}
+export const Cities = {
+  Paris: 'Paris',
+  Cologne: 'Cologne',
+  Brussels: 'Brussels',
+  Amsterdam: 'Amsterdam',
+  Hamburg: 'Hamburg',
+  Dusseldorf: 'Dusseldorf',
+} as const;
 
 export enum PlacesSort {
   Popular = 'Popular',
   PriceLowToHigh = 'Price: low to high',
   PriceHighToLow = 'Price: high to low',
   TopRatedFirst = 'Top rated first',
+}
+
+export enum NameSpace {
+  Interface = 'Interface',
+  Data = 'Data'
 }

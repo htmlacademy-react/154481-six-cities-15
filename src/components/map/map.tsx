@@ -3,7 +3,7 @@ import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
 import useMap from '../hooks/useMap';
 import { MapIcon } from '../../const';
-import { TCity, TGeneralOffer } from '../types/offers';
+import { TOfferCity, TGeneralOffer } from '../types/offers';
 
 const defaultMarker = L.icon({
   iconUrl: MapIcon.Default.Url,
@@ -24,7 +24,7 @@ type TMapProps = {
 }
 
 function Map({ offers, activeCardId, className }: TMapProps): JSX.Element {
-  const activeCity: TCity = offers[0].city;
+  const activeCity: TOfferCity = offers[0].city;
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, activeCity);
@@ -32,13 +32,14 @@ function Map({ offers, activeCardId, className }: TMapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      map.setView(
+      map.flyTo(
         [
           activeCity.location.latitude,
           activeCity.location.longitude
         ],
         activeCity.location.zoom
       );
+
       markerLayerRef.current.addTo(map);
       markerLayerRef.current.clearLayers();
     }

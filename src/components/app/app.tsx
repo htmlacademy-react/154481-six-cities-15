@@ -10,13 +10,8 @@ import { FakeOffer } from '../mocks/offers';
 import Layout from '../layout/layout';
 import { getAuthorizationStatus } from '../../utils/utils';
 import { HelmetProvider } from 'react-helmet-async';
-import { TGeneralOffer } from '../types/offers';
 
-type TAppProps = {
-  offers: TGeneralOffer[];
-}
-
-function App({ offers }: TAppProps): JSX.Element {
+function App(): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -27,7 +22,7 @@ function App({ offers }: TAppProps): JSX.Element {
           >
             <Route
               index
-              element={<MainPage offers={offers} />}
+              element={<MainPage />}
             />
             <Route
               path={AppRoute.Offer}
@@ -37,7 +32,7 @@ function App({ offers }: TAppProps): JSX.Element {
               path={AppRoute.Favorites}
               element={
                 <PrivateRoute authorizationStatus={getAuthorizationStatus()}>
-                  <FavoritesPage offers={offers} />
+                  <FavoritesPage />
                 </PrivateRoute>
               }
             />

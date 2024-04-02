@@ -1,23 +1,31 @@
 import { Link } from 'react-router-dom';
-import { Cities } from '../../const';
+import { AppRoute, Cities } from '../../const';
 import classNames from 'classnames';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { getActiveCity } from '../store/interface-reducer/selectors';
+import { setCity } from '../store/interface-reducer/interface-reducer';
+import { TCityName } from '../types/cities';
 
 function LocationsList(): JSX.Element {
+  const activeCity = useAppSelector(getActiveCity);
+  const dispatch = useAppDispatch();
+
   return (
     <ul className="locations__list tabs__list">
       {
-        Object.keys(Cities).map((city) => {
+        Object.values(Cities).map((city: TCityName) => {
           const linkClass = classNames({
             'locations__item-link tabs__item': true,
-            'locations__item-link tabs__item--active': city === Object.keys(Cities)[0]
+            'locations__item-link tabs__item--active': city === activeCity
           });
 
           return (
             <li
               key={city}
               className="locations__item"
+              onClick={() => dispatch(setCity(city))}
             >
-              <Link className={linkClass} to="#">
+              <Link className={linkClass} to={AppRoute.Main}>
                 <span>{city}</span>
               </Link>
             </li>

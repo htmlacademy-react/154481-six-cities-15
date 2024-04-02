@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
+import { Provider } from 'react-redux';
+import { store } from './components/store';
 import { FakeOffers } from './components/mocks/offers';
+import { loadOffers } from './components/store/data-reducer/data-reducer';
+
+store.dispatch(loadOffers(FakeOffers));
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -9,6 +14,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App offers={FakeOffers} />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
