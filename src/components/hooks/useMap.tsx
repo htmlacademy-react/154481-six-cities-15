@@ -9,14 +9,13 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: TOfferCity):
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = L
-        .map(mapRef.current)
-        .setView(
-          [
+        .map(mapRef.current, {
+          center: [
             city.location.latitude,
-            city.location.longitude
+            city.location.longitude,
           ],
-          city.location.zoom
-        );
+          zoom: city.location.zoom,
+        });
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

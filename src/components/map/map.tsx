@@ -32,13 +32,14 @@ function Map({ offers, activeCardId, className }: TMapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      map.setView(
+      map.flyTo(
         [
           activeCity.location.latitude,
           activeCity.location.longitude
         ],
         activeCity.location.zoom
       );
+
       markerLayerRef.current.addTo(map);
       markerLayerRef.current.clearLayers();
     }
