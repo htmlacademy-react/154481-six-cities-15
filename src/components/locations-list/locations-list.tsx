@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { getActiveCity } from '../store/interface-reducer/selectors';
 import { setCity } from '../store/interface-reducer/interface-reducer';
-import { TCityName } from '../types/cities';
+import { TCityName } from '../types/types';
 
 function LocationsList(): JSX.Element {
   const activeCity = useAppSelector(getActiveCity);
