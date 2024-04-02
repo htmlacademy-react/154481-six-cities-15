@@ -1,8 +1,9 @@
 import { store } from '../store';
+import { TCityName } from './cities';
 import { TGeneralOffer } from './offers';
 
 export type TInterfaceReducer = {
-  activeCity: string;
+  activeCity: TCityName;
 }
 
 export type TDataReducer = {

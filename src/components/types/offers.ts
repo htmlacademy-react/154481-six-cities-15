@@ -3,7 +3,7 @@ export type TGeneralOffer = {
   title: string;
   type: string;
   price: number;
-  city: TCity;
+  city: TOfferCity;
   location: {
     latitude: number;
     longitude: number;
@@ -20,7 +20,7 @@ export type TDetailedOffer = {
   title: string;
   type: string;
   price: number;
-  city: TCity;
+  city: TOfferCity;
   location: {
     latitude: number;
     longitude: number;
@@ -41,7 +41,7 @@ export type TDetailedOffer = {
   maxAdults: number;
 }
 
-export type TCity = {
+export type TOfferCity = {
   name: string;
   location: {
     latitude: number;

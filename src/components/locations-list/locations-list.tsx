@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { getActiveCity } from '../store/interface-reducer/selectors';
 import { setCity } from '../store/interface-reducer/interface-reducer';
+import { TCityName } from '../types/cities';
 
 function LocationsList(): JSX.Element {
   const activeCity = useAppSelector(getActiveCity);
@@ -12,7 +13,7 @@ function LocationsList(): JSX.Element {
   return (
     <ul className="locations__list tabs__list">
       {
-        Object.values(Cities).map((city: string) => {
+        Object.values(Cities).map((city: TCityName) => {
           const linkClass = classNames({
             'locations__item-link tabs__item': true,
             'locations__item-link tabs__item--active': city === activeCity
