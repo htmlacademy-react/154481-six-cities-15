@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { TAppDispatch, TState } from '../types/state';
 import { TDetailedOffer, TGeneralOffer } from '../types/offers';
-import { loadOffer, loadOffers, setOfferDataLoadingStatus, setOffersDataLoadingStatus } from './data-reducer/data-reducer';
+import { loadComments, loadNearbyOffers, loadOffer, loadOffers, setCommentsDataLoadingStatus, setNearbyOffersDataLoadingStatus, setOfferDataLoadingStatus, setOffersDataLoadingStatus } from './data-reducer/data-reducer';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../../const';
 import { requireAuthorizationStatus, setUser } from './user-reducer/user-reducer';
@@ -9,6 +9,8 @@ import { TAuthData } from '../types/auth-data';
 import { TUserData } from '../types/usert-data';
 import { dropToken, saveToken } from '../services/token';
 import { redirectToRoute } from './action';
+import { TComment } from '../types/comments';
+import { generatePath } from 'react-router-dom';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: TAppDispatch;
@@ -40,6 +42,34 @@ export const fetchOfferACtion = createAsyncThunk <void, string, {
       dispatch(setOfferDataLoadingStatus(false));
       dispatch(redirectToRoute(AppRoute.NotFound));
     }
+  }
+);
+
+export const fetchCommentsAction = createAsyncThunk <void, string, {
+  dispatch: TAppDispatch;
+  state: TState;
+  extra: AxiosInstance;
+}>(
+  'data/fetchComments',
+  async (id, { dispatch, extra: api }) => {
+    dispatch(setCommentsDataLoadingStatus(true));
+    const { data } = await api.get<TComment[]>(`${APIRoute.Comments}/${id}`);
+    dispatch(setCommentsDataLoadingStatus(false));
+    dispatch(loadComments(data));
+  }
+);
+
+export const fetchNearbyOffersAction = createAsyncThunk <void, string, {
+  dispatch: TAppDispatch;
+  state: TState;
+  extra: AxiosInstance;
+}>(
+  'data/fetchNearbyOffers',
+  async (id, { dispatch, extra: api }) => {
+    dispatch(setNearbyOffersDataLoadingStatus(true));
+    const { data } = await api.get<TGeneralOffer[]>(generatePath(APIRoute.Nearby, {id}));
+    dispatch(setNearbyOffersDataLoadingStatus(false));
+    dispatch(loadNearbyOffers(data));
   }
 );
 
