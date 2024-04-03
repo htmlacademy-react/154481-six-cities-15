@@ -4,7 +4,7 @@ import { TGeneralOffer } from '../types/offers';
 import { loadOffers, setOffersDataLoadingStatus } from './data-reducer/data-reducer';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { APIRoute, AuthorizationStatus } from '../../const';
-import { requireAuthorizationStatus } from './user-reducer/user-reducer';
+import { requireAuthorizationStatus, setUser } from './user-reducer/user-reducer';
 import { TAuthData } from '../types/auth-data';
 import { TUserData } from '../types/usert-data';
 import { dropToken, saveToken } from '../services/token';
@@ -46,9 +46,10 @@ export const loginAction = createAsyncThunk <void, TAuthData, {
 }>(
   'user/login',
   async ({ login: email, password }, { dispatch, extra: api }) => {
-    const { data: { token } } = await api.post<TUserData>(APIRoute.Login, { email, password });
-    saveToken(token);
+    const { data } = await api.post<TUserData>(APIRoute.Login, { email, password });
+    saveToken(data.token);
     dispatch(requireAuthorizationStatus(AuthorizationStatus.Auth));
+    dispatch(setUser(data));
   }
 );
 

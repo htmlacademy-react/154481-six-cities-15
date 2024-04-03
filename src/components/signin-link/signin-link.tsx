@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import { useAppSelector } from '../hooks';
+import { getUser } from '../store/user-reducer/selectors';
 
 type TSigninLinkProps = {
   isAuth: boolean;
 }
 
 function SigninLink({ isAuth }: TSigninLinkProps): JSX.Element {
+  const user = useAppSelector(getUser);
+
   return (
     <li className="header__nav-item user">
       <Link
@@ -18,7 +22,7 @@ function SigninLink({ isAuth }: TSigninLinkProps): JSX.Element {
           isAuth
             ? (
               <>
-                <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                <span className="header__user-name user__name">{user?.email}</span>
                 <span className="header__favorite-count">3</span>
               </>
             )
