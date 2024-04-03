@@ -73,9 +73,12 @@ export enum PlacesSort {
 
 export enum NameSpace {
   Interface = 'Interface',
-  Data = 'Data'
+  Data = 'Data',
+  User = 'User',
 }
 
 export enum APIRoute {
   Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
 }

@@ -1,7 +1,7 @@
 import { TGeneralOffer } from '../components/types/offers';
 import { AuthorizationStatus, MAX_RATING, PlacesSort } from '../const';
 
-export const getAuthorizationStatus = () => AuthorizationStatus.Auth;
+export const getAuthorizationStatus = () => AuthorizationStatus.NoAuth;
 
 export const convertRatingToPercantage = (rating: number) => Math.round(rating) / MAX_RATING * 100;
 

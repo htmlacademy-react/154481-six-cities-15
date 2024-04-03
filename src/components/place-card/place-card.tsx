@@ -60,7 +60,7 @@ function PlaceCard({ offer, cardType, handleCardHover }: TPlaceCardProps): JSX.E
         )
       }
 
-      <div className={`${CardSettings[cardType].ImageWrapperClass} place-card`}>
+      <div className={`${CardSettings[cardType].ImageWrapperClass} place-card__image-wrapper`}>
         <Link to={{pathname: generatePath(AppRoute.Offer, {id})}}>
           <img
             className="place-card__image"
