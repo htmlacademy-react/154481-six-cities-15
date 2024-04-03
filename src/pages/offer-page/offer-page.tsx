@@ -1,20 +1,43 @@
 import { Helmet } from 'react-helmet-async';
 import Host from '../../components/host/host';
 import OfferInside from '../../components/offer-inside/offer-inside';
-import { TDetailedOffer } from '../../components/types/offers';
 import { convertRatingToPercantage } from '../../utils/utils';
 import Reviews from '../../components/reviews/reviews';
 import { FakeOffers } from '../../components/mocks/offers';
 import Map from '../../components/map/map';
 import PlaceCard from '../../components/place-card/place-card';
 import { CardType } from '../../const';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../components/hooks';
+import { fetchOfferACtion } from '../../components/store/api-action';
+import { useParams } from 'react-router-dom';
+import { getOffer, getOfferDataLoadingStatus } from '../../components/store/data-reducer/selectors';
+import LoadingPage from '../loading-page/loading-page';
+import NotFoundPage from '../not-found-page/not-found-page';
 
-type TOfferPageProps = {
-  offer: TDetailedOffer;
-}
+function OfferPage(): JSX.Element {
+  const { id } = useParams();
 
-function OfferPage({ offer }: TOfferPageProps): JSX.Element {
-  const { images, isPremium, title, type, bedrooms, maxAdults, price, goods, host, rating, id } = offer;
+  const dispatch = useAppDispatch();
+
+  const offer = useAppSelector(getOffer);
+  const isOfferDataLoading = useAppSelector(getOfferDataLoadingStatus);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchOfferACtion(id));
+    }
+  }, [dispatch, id]);
+
+  if (isOfferDataLoading) {
+    return <LoadingPage />;
+  }
+
+  if (!offer) {
+    return <NotFoundPage />;
+  }
+
+  const { images, isPremium, title, type, bedrooms, maxAdults, price, goods, host, rating } = offer;
 
   const MAX_NEARBY_OFFERS_AMOUNT = 3;
   const offersNearby = FakeOffers.slice(0, MAX_NEARBY_OFFERS_AMOUNT);
@@ -87,13 +110,13 @@ function OfferPage({ offer }: TOfferPageProps): JSX.Element {
             <OfferInside goods={goods} />
             <Host host={host} />
 
-            <Reviews id={id} />
+            <Reviews id={offer.id} />
 
           </div>
         </div>
 
         <Map
-          activeCardId={id}
+          activeCardId={offer.id}
           offers={offersNearby}
           className='offer__map'
         />
