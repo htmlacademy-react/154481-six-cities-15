@@ -10,12 +10,12 @@ const userSlice = createSlice({
   name: NameSpace.User,
   initialState,
   reducers: {
-    setAuthorizationStatus(state, action: PayloadAction<AuthorizationStatus>) {
+    requireAuthorizationStatus(state, action: PayloadAction<AuthorizationStatus>) {
       state.authorizationStatus = action.payload;
     }
   }
 });
 
-export const { setAuthorizationStatus } = userSlice.actions;
+export const { requireAuthorizationStatus } = userSlice.actions;
 export default userSlice.reducer;
 
