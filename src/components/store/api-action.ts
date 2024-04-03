@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { TAppDispatch, TState } from '../types/state';
-import { TGeneralOffer } from '../types/offers';
-import { loadOffers, setOffersDataLoadingStatus } from './data-reducer/data-reducer';
+import { TDetailedOffer, TGeneralOffer } from '../types/offers';
+import { loadOffer, loadOffers, setOfferDataLoadingStatus, setOffersDataLoadingStatus } from './data-reducer/data-reducer';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../../const';
 import { requireAuthorizationStatus, setUser } from './user-reducer/user-reducer';
@@ -21,6 +21,20 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     const { data } = await api.get<TGeneralOffer[]>(APIRoute.Offers);
     dispatch(setOffersDataLoadingStatus(false));
     dispatch(loadOffers(data));
+  }
+);
+
+export const fetchOfferACtion = createAsyncThunk <void, string, {
+  dispatch: TAppDispatch;
+  state: TState;
+  extra: AxiosInstance;
+}>(
+  'data/fetchOffer',
+  async (id, { dispatch, extra: api }) => {
+    dispatch(setOfferDataLoadingStatus(true));
+    const { data } = await api.get<TDetailedOffer>(`${APIRoute.Offers}/${id}`);
+    dispatch(setOfferDataLoadingStatus(false));
+    dispatch(loadOffer(data));
   }
 );
 

@@ -1,6 +1,6 @@
 import { store } from '../store';
 import { TCityName } from './types';
-import { TGeneralOffer } from './offers';
+import { TDetailedOffer, TGeneralOffer } from './offers';
 import { AuthorizationStatus } from '../../const';
 import { TUserData } from './usert-data';
 
@@ -10,7 +10,9 @@ export type TInterfaceReducer = {
 
 export type TDataReducer = {
   offers: TGeneralOffer[];
+  offer: TDetailedOffer | null;
   isOffersDataLoading: boolean;
+  isOfferDataLoading: boolean;
 }
 
 export type TUserReducer = {
