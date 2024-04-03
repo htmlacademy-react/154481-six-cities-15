@@ -3,17 +3,18 @@ import Host from '../../components/host/host';
 import OfferInside from '../../components/offer-inside/offer-inside';
 import { convertRatingToPercantage } from '../../utils/utils';
 import Reviews from '../../components/reviews/reviews';
-import { FakeOffers } from '../../components/mocks/offers';
 import Map from '../../components/map/map';
 import PlaceCard from '../../components/place-card/place-card';
 import { CardType } from '../../const';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
-import { fetchOfferACtion } from '../../components/store/api-action';
+import { fetchNearbyOffersAction, fetchOfferACtion } from '../../components/store/api-action';
 import { useParams } from 'react-router-dom';
-import { getOffer, getOfferDataLoadingStatus } from '../../components/store/data-reducer/selectors';
+import { getNearbyOffers, getNearbyOffersDataLoadingStatus, getOffer, getOfferDataLoadingStatus } from '../../components/store/data-reducer/selectors';
 import LoadingPage from '../loading-page/loading-page';
 import NotFoundPage from '../not-found-page/not-found-page';
+
+const MAX_NEARBY_OFFERS_AMOUNT = 3;
 
 function OfferPage(): JSX.Element {
   const { id } = useParams();
@@ -21,15 +22,18 @@ function OfferPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const offer = useAppSelector(getOffer);
+  const offersNearby = useAppSelector(getNearbyOffers);
   const isOfferDataLoading = useAppSelector(getOfferDataLoadingStatus);
+  const isNearByOffersDataLoading = useAppSelector(getNearbyOffersDataLoadingStatus);
 
   useEffect(() => {
     if (id) {
       dispatch(fetchOfferACtion(id));
+      dispatch(fetchNearbyOffersAction(id));
     }
   }, [dispatch, id]);
 
-  if (isOfferDataLoading) {
+  if (isOfferDataLoading || isNearByOffersDataLoading) {
     return <LoadingPage />;
   }
 
@@ -37,10 +41,8 @@ function OfferPage(): JSX.Element {
     return <NotFoundPage />;
   }
 
-  const { images, isPremium, title, type, bedrooms, maxAdults, price, goods, host, rating } = offer;
-
-  const MAX_NEARBY_OFFERS_AMOUNT = 3;
-  const offersNearby = FakeOffers.slice(0, MAX_NEARBY_OFFERS_AMOUNT);
+  const offersNearbySliced = offersNearby.slice(0, MAX_NEARBY_OFFERS_AMOUNT);
+  const { images, isPremium, title, type, bedrooms, maxAdults, price, goods, host, rating, description } = offer;
 
   return (
     <main className="page__main page__main--offer">
@@ -108,16 +110,16 @@ function OfferPage(): JSX.Element {
             </div>
 
             <OfferInside goods={goods} />
-            <Host host={host} />
+            <Host host={host} description={description} />
 
-            <Reviews id={offer.id} />
+            <Reviews />
 
           </div>
         </div>
 
         <Map
           activeCardId={offer.id}
-          offers={offersNearby}
+          offers={[...offersNearbySliced, offer]}
           className='offer__map'
         />
 
@@ -128,7 +130,7 @@ function OfferPage(): JSX.Element {
             </h2>
             <div className="near-places__list places__list">
               {
-                offersNearby.map((offerNearby) => (
+                offersNearbySliced.map((offerNearby) => (
                   <PlaceCard
                     key={offerNearby.id}
                     cardType={CardType.PlacesNearby}

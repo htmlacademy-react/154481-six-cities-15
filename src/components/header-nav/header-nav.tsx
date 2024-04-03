@@ -1,12 +1,9 @@
-import { AuthorizationStatus } from '../../const';
 import SignoutLink from '../signout-link/signout-link';
 import SigninLink from '../signin-link/signin-link';
-import { useAppSelector } from '../hooks';
-import { getAuthorizationStatus } from '../store/user-reducer/selectors';
+import UseAuth from '../hooks/use-auth';
 
 function HeaderNav(): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const isAuth = authorizationStatus === AuthorizationStatus.Auth;
+  const isAuth = UseAuth();
 
   return (
     <nav className="header__nav">

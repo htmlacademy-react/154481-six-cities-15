@@ -1,9 +1,9 @@
 import L, { LayerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
-import useMap from '../hooks/useMap';
+import useMap from '../hooks/use-map';
 import { MapIcon } from '../../const';
-import { TOfferCity, TGeneralOffer } from '../types/offers';
+import { TOfferCity, TGeneralOffer, TDetailedOffer } from '../types/offers';
 
 const defaultMarker = L.icon({
   iconUrl: MapIcon.Default.Url,
@@ -18,7 +18,7 @@ const activeMarker = L.icon({
 });
 
 type TMapProps = {
-  offers: TGeneralOffer[];
+  offers: (TGeneralOffer | TDetailedOffer)[];
   activeCardId: string | null;
   className: string;
 }
