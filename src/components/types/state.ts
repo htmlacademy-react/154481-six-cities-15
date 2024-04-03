@@ -8,6 +8,7 @@ export type TInterfaceReducer = {
 
 export type TDataReducer = {
   offers: TGeneralOffer[];
+  isOffersDataLoading: boolean;
 }
 
 export type TState = ReturnType<typeof store.getState>;

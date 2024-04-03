@@ -11,3 +11,5 @@ export const getOffersByCity = (state: TState): TGeneralOffer[] => {
 
   return filterOffersByCity(offers, activeCity);
 };
+
+export const getOffersDataLoadingStatus = (state: TState): boolean => state[NameSpace.Data].isOffersDataLoading;

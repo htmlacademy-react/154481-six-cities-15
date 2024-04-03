@@ -5,6 +5,7 @@ import { TGeneralOffer } from '../../types/offers';
 
 const initialState: TDataReducer = {
   offers: [],
+  isOffersDataLoading: false,
 };
 
 const dataSlice = createSlice({
@@ -14,9 +15,12 @@ const dataSlice = createSlice({
     loadOffers(state, action: PayloadAction<TGeneralOffer[]>) {
       state.offers = action.payload;
     },
+    setOffersDataLoadingStatus(state, action: PayloadAction<boolean>) {
+      state.isOffersDataLoading = action.payload;
+    }
   }
 });
 
-export const { loadOffers } = dataSlice.actions;
+export const { loadOffers, setOffersDataLoadingStatus } = dataSlice.actions;
 export default dataSlice.reducer;
 
