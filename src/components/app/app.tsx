@@ -10,8 +10,17 @@ import { FakeOffer } from '../mocks/offers';
 import Layout from '../layout/layout';
 import { getAuthorizationStatus } from '../../utils/utils';
 import { HelmetProvider } from 'react-helmet-async';
+import { useAppSelector } from '../hooks';
+import { getOffersDataLoadingStatus } from '../store/data-reducer/selectors';
+import LoadingPage from '../../pages/loading-page/loading-page';
 
 function App(): JSX.Element {
+  const isOffersDataLoading = useAppSelector(getOffersDataLoadingStatus);
+
+  if (isOffersDataLoading) {
+    return <LoadingPage />;
+  }
+
   return (
     <HelmetProvider>
       <BrowserRouter>
