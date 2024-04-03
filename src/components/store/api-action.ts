@@ -3,11 +3,12 @@ import { TAppDispatch, TState } from '../types/state';
 import { TGeneralOffer } from '../types/offers';
 import { loadOffers, setOffersDataLoadingStatus } from './data-reducer/data-reducer';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { APIRoute, AuthorizationStatus } from '../../const';
+import { APIRoute, AppRoute, AuthorizationStatus } from '../../const';
 import { requireAuthorizationStatus, setUser } from './user-reducer/user-reducer';
 import { TAuthData } from '../types/auth-data';
 import { TUserData } from '../types/usert-data';
 import { dropToken, saveToken } from '../services/token';
+import { redirectToRoute } from './action';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: TAppDispatch;
@@ -50,6 +51,7 @@ export const loginAction = createAsyncThunk <void, TAuthData, {
     saveToken(data.token);
     dispatch(requireAuthorizationStatus(AuthorizationStatus.Auth));
     dispatch(setUser(data));
+    dispatch(redirectToRoute(AppRoute.Main));
   }
 );
 
