@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import MainPage from '../../pages/main-page/main-page';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import OfferPage from '../../pages/offer-page/offer-page';
@@ -13,6 +13,8 @@ import { useAppSelector } from '../hooks';
 import { getAuthorizationStatus } from '../store/user-reducer/selectors';
 import { getOffersDataLoadingStatus } from '../store/data-reducer/selectors';
 import LoadingPage from '../../pages/loading-page/loading-page';
+import HistoryRouter from '../history-router/history-router';
+import browserHistory from '../../browser-history';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -24,7 +26,7 @@ function App(): JSX.Element {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Routes>
           <Route
             path={AppRoute.Main}
@@ -56,7 +58,7 @@ function App(): JSX.Element {
             />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   );
 }
