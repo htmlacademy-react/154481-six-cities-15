@@ -9,7 +9,7 @@ import { TAuthData } from '../types/auth-data';
 import { TUserData } from '../types/usert-data';
 import { dropToken, saveToken } from '../services/token';
 import { redirectToRoute } from './action';
-import { TComment } from '../types/comments';
+import { TComment, TCommentPost } from '../types/comments';
 import { generatePath } from 'react-router-dom';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -56,6 +56,17 @@ export const fetchCommentsAction = createAsyncThunk <void, string, {
     const { data } = await api.get<TComment[]>(`${APIRoute.Comments}/${id}`);
     dispatch(setCommentsDataLoadingStatus(false));
     dispatch(loadComments(data));
+  }
+);
+
+export const postCommentAction = createAsyncThunk <void, TCommentPost, {
+  dispatch: TAppDispatch;
+  state: TState;
+  extra: AxiosInstance;
+}>(
+  'data/postComment',
+  async ({id, comment, rating}, { extra: api }) => {
+    await api.post(`${APIRoute.Comments}/${id}`, { comment, rating });
   }
 );
 

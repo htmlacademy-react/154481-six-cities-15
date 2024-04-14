@@ -1,13 +1,19 @@
 import { ReactEventHandler, useState } from 'react';
 import ReviewsRating from '../reviews-rating/reviews-rating';
+import { useAppDispatch } from '../hooks';
+import { postCommentAction } from '../store/api-action';
+import { useParams } from 'react-router-dom';
 
 export type TChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
 function ReviewsForm(): JSX.Element {
+  const { id } = useParams();
   const [form, setForm] = useState({
     rating: '0',
     review: '',
   });
+
+  const dispatch = useAppDispatch();
 
   const handleChange: TChangeHandler = (e) => {
     const { name, value } = e.currentTarget;
@@ -18,8 +24,24 @@ function ReviewsForm(): JSX.Element {
     });
   };
 
+  const handleSubmit: ReactEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    if (id) {
+      dispatch(postCommentAction({
+        rating: +form.rating,
+        comment: form.review,
+        id
+      }));
+    }
+  };
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form
+      className="reviews__form form"
+      action="#"
+      method="post"
+      onSubmit={handleSubmit}
+    >
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
