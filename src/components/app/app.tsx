@@ -6,7 +6,6 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import { FakeOffer } from '../mocks/offers';
 import Layout from '../layout/layout';
 import { HelmetProvider } from 'react-helmet-async';
 import { useAppSelector } from '../hooks';
@@ -38,7 +37,7 @@ function App(): JSX.Element {
             />
             <Route
               path={AppRoute.Offer}
-              element={<OfferPage offer={FakeOffer} />}
+              element={<OfferPage />}
             />
             <Route
               path={AppRoute.Favorites}
