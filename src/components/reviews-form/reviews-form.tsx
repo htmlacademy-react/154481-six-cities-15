@@ -1,7 +1,7 @@
 import { ReactEventHandler, useState } from 'react';
 import ReviewsRating from '../reviews-rating/reviews-rating';
 import { useAppDispatch } from '../hooks';
-import { postCommentAction } from '../store/api-action';
+import { postCommentAction } from '../store/thunks/comments';
 import { useParams } from 'react-router-dom';
 
 export type TChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;

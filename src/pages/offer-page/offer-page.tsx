@@ -8,7 +8,7 @@ import PlaceCard from '../../components/place-card/place-card';
 import { CardType } from '../../const';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
-import { fetchNearbyOffersAction, fetchOfferACtion } from '../../components/store/api-action';
+import { fetchNearbyOffersAction, fetchOfferACtion } from '../../components/store/thunks/offers';
 import { useParams } from 'react-router-dom';
 import { getNearbyOffers, getNearbyOffersDataLoadingStatus, getOffer, getOfferDataLoadingStatus } from '../../components/store/data-reducer/selectors';
 import LoadingPage from '../loading-page/loading-page';

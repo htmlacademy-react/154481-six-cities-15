@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../hooks';
-import { logoutAction } from '../store/api-action';
 import { MouseEvent } from 'react';
+import { logoutAction } from '../store/thunks/user';
 
 function SignoutLink(): JSX.Element {
   const dispatch = useAppDispatch();

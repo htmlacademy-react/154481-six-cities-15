@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 import { getComments } from '../store/data-reducer/selectors';
 import UseAuth from '../hooks/use-auth';
 import { useEffect } from 'react';
-import { fetchCommentsAction } from '../store/api-action';
+import { fetchCommentsAction } from '../store/thunks/comments';
 import { useParams } from 'react-router-dom';
 
 function Reviews(): JSX.Element {

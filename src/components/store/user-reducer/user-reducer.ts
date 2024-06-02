@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, NameSpace } from '../../../const';
 import { TUserReducer } from '../../types/state';
 import { TUserData } from '../../types/usert-data';
-import { checkAuthAction, loginAction, logoutAction } from '../api-action';
+import { checkAuthAction, loginAction, logoutAction } from '../thunks/user';
 
 const initialState: TUserReducer = {
   authorizationStatus: AuthorizationStatus.Unknown,

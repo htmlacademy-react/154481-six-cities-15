@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useAppDispatch } from '../hooks';
-import { loginAction } from '../store/api-action';
+import { loginAction } from '../store/thunks/user';
 
 function LoginForm(): JSX.Element {
   const [form, setForm] = useState({
