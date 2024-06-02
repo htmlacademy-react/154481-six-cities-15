@@ -1,18 +1,9 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { NameSpace } from '../../const';
-import interfaceReducer from './interface-reducer/interface-reducer';
-import dataReducer from './data-reducer/data-reducer';
+import { configureStore } from '@reduxjs/toolkit';
 import { createAPI } from '../services/api';
-import userReducer from './user-reducer/user-reducer';
 import { redirect } from './middlewares/redirect';
+import { rootReducer } from './root-reducer';
 
 const api = createAPI();
-
-export const rootReducer = combineReducers({
-  [NameSpace.Interface]: interfaceReducer,
-  [NameSpace.Data]: dataReducer,
-  [NameSpace.User]: userReducer,
-});
 
 export const store = configureStore({
   reducer: rootReducer,
