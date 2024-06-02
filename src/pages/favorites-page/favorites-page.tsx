@@ -1,9 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import FavoritesList from '../../components/favorites-list/favorites-list';
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
 import { useAppSelector } from '../../components/hooks';
 import { getOffers } from '../../components/store/data-reducer/selectors';
+import Footer from '../../components/footer/footer';
 
 function FavoritesPage(): JSX.Element {
   const offers = useAppSelector(getOffers);
@@ -23,17 +22,8 @@ function FavoritesPage(): JSX.Element {
           </section>
         </div>
       </main>
-      <footer className="footer container">
-        <Link className="footer__logo-link" to={AppRoute.Main}>
-          <img
-            className="footer__logo"
-            src="img/logo.svg"
-            alt="6 cities logo"
-            width={64}
-            height={33}
-          />
-        </Link>
-      </footer>
+
+      <Footer />
     </>
   );
 }
