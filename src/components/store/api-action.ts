@@ -3,8 +3,8 @@ import { TAppDispatch, TState } from '../types/state';
 import { TDetailedOffer, TGeneralOffer } from '../types/offers';
 import { loadComments, loadNearbyOffers, loadOffer, loadOffers, setCommentsDataLoadingStatus, setNearbyOffersDataLoadingStatus, setOfferDataLoadingStatus, setOffersDataLoadingStatus } from './data-reducer/data-reducer';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { APIRoute, AppRoute, AuthorizationStatus } from '../../const';
-import { requireAuthorizationStatus, setUser } from './user-reducer/user-reducer';
+import { APIRoute, AppRoute } from '../../const';
+import { setUser } from './user-reducer/user-reducer';
 import { TAuthData } from '../types/auth-data';
 import { TUserData } from '../types/usert-data';
 import { dropToken, saveToken } from '../services/token';
@@ -90,13 +90,8 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   'user/checkAuth',
-  async (_arg, { dispatch, extra: api }) => {
-    try {
-      await api.get(APIRoute.Login);
-      dispatch(requireAuthorizationStatus(AuthorizationStatus.Auth));
-    } catch {
-      dispatch(requireAuthorizationStatus(AuthorizationStatus.NoAuth));
-    }
+  async (_arg, { extra: api }) => {
+    await api.get(APIRoute.Login);
   }
 );
 
@@ -109,7 +104,6 @@ export const loginAction = createAsyncThunk <void, TAuthData, {
   async ({ login: email, password }, { dispatch, extra: api }) => {
     const { data } = await api.post<TUserData>(APIRoute.Login, { email, password });
     saveToken(data.token);
-    dispatch(requireAuthorizationStatus(AuthorizationStatus.Auth));
     dispatch(setUser(data));
     dispatch(redirectToRoute(AppRoute.Main));
   }
@@ -121,10 +115,9 @@ export const logoutAction = createAsyncThunk < void, undefined, {
   extra: AxiosInstance;
 }>(
   'user/logout',
-  async (_arg, { dispatch, extra: api }) => {
+  async (_arg, { extra: api }) => {
     await api.delete(APIRoute.Logout);
     dropToken();
-    dispatch(requireAuthorizationStatus(AuthorizationStatus.NoAuth));
   }
 );
 

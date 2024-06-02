@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 type THostProps = {
   host: {
     name: string;
@@ -7,7 +9,7 @@ type THostProps = {
   description: string;
 };
 
-function Host({ host, description }: THostProps): JSX.Element {
+function Host_({ host, description }: THostProps): JSX.Element {
   const { name, avatarUrl, isPro } = host;
 
   return (
@@ -37,4 +39,5 @@ function Host({ host, description }: THostProps): JSX.Element {
   );
 }
 
+const Host = memo(Host_);
 export default Host;

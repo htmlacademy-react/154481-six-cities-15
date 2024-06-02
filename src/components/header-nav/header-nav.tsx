@@ -1,8 +1,9 @@
 import SignoutLink from '../signout-link/signout-link';
 import SigninLink from '../signin-link/signin-link';
 import UseAuth from '../hooks/use-auth';
+import { memo } from 'react';
 
-function HeaderNav(): JSX.Element {
+function HeaderNav_(): JSX.Element {
   const isAuth = UseAuth();
 
   return (
@@ -17,4 +18,5 @@ function HeaderNav(): JSX.Element {
   );
 }
 
+const HeaderNav = memo(HeaderNav_);
 export default HeaderNav;

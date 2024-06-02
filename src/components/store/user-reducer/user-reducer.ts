@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, NameSpace } from '../../../const';
 import { TUserReducer } from '../../types/state';
 import { TUserData } from '../../types/usert-data';
+import { checkAuthAction, loginAction, logoutAction } from '../api-action';
 
 const initialState: TUserReducer = {
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -18,6 +19,24 @@ const userSlice = createSlice({
     setUser(state, action: PayloadAction<TUserData>) {
       state.user = action.payload;
     }
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(checkAuthAction.fulfilled, (state) => {
+        state.authorizationStatus = AuthorizationStatus.Auth;
+      })
+      .addCase(checkAuthAction.rejected, (state) => {
+        state.authorizationStatus = AuthorizationStatus.NoAuth;
+      })
+      .addCase(loginAction.fulfilled, (state) => {
+        state.authorizationStatus = AuthorizationStatus.Auth;
+      })
+      .addCase(loginAction.rejected, (state) => {
+        state.authorizationStatus = AuthorizationStatus.NoAuth;
+      })
+      .addCase(logoutAction.fulfilled, (state) => {
+        state.authorizationStatus = AuthorizationStatus.NoAuth;
+      });
   }
 });
 

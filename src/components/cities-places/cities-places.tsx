@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Map from '../map/map';
 import PlaceCardList from '../place-card-list/place-card-list';
 import PlacesSorting from '../places-sorting/places-sorting';
@@ -16,13 +16,13 @@ function CitiesPlaces(): JSX.Element {
   const offers = useAppSelector(getOffersByCity);
   const sortedOffers = sortOffers(offers, activeSort);
 
-  const handleCardHover = (id?: string) => {
+  const handleCardHover = useCallback((id?: string) => {
     setActiveCardId(id || null);
-  };
+  }, []);
 
-  const handleSortChange = (sort: string) => {
+  const handleSortChange = useCallback((sort: string) => {
     setActiveSort(sort);
-  };
+  }, []);
 
   return (
     <div className="cities">

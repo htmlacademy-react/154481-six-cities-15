@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../hooks';
 import { getUser } from '../store/user-reducer/selectors';
+import { memo } from 'react';
 
 type TSigninLinkProps = {
   isAuth: boolean;
 }
 
-function SigninLink({ isAuth }: TSigninLinkProps): JSX.Element {
+function SigninLink_({ isAuth }: TSigninLinkProps): JSX.Element {
   const user = useAppSelector(getUser);
 
   return (
@@ -35,4 +36,5 @@ function SigninLink({ isAuth }: TSigninLinkProps): JSX.Element {
   );
 }
 
+const SigninLink = memo(SigninLink_);
 export default SigninLink;

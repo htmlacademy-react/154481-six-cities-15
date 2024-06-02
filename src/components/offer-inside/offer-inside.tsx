@@ -1,8 +1,10 @@
+import { memo } from 'react';
+
 type TOfferInsideProps = {
   goods: string[];
 }
 
-function OfferInside({ goods }: TOfferInsideProps): JSX.Element {
+function OfferInside_({ goods }: TOfferInsideProps): JSX.Element {
   return (
     <div className="offer__inside">
       <h2 className="offer__inside-title">What&apos;s inside</h2>
@@ -22,4 +24,5 @@ function OfferInside({ goods }: TOfferInsideProps): JSX.Element {
   );
 }
 
+const OfferInside = memo(OfferInside_);
 export default OfferInside;

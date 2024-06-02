@@ -42,6 +42,8 @@ export const MapIcon = {
   }
 };
 
+export const enum RequestStatus { Idle, Loading, Success, Failed }
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
