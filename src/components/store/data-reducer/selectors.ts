@@ -11,13 +11,6 @@ export const getOffer = (state: TState): TDetailedOffer | null => state[NameSpac
 export const getComments = (state: TState): TComment[] => state[NameSpace.Data].comments;
 export const getNearbyOffers = (state: TState): TGeneralOffer[] => state[NameSpace.Data].nearbyOffers;
 
-// export const getOffersByCity = (state: TState): TGeneralOffer[] => {
-//   const offers = state[NameSpace.Data].offers;
-//   const activeCity = state[NameSpace.Interface].activeCity;
-
-//   return filterOffersByCity(offers, activeCity);
-// };
-
 export const getOffersByCity = createSelector(
   [getOffers, getActiveCity],
   (offers, activeCity): TGeneralOffer[] => filterOffersByCity(offers, activeCity)
